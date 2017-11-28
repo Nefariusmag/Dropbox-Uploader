@@ -476,6 +476,11 @@ function db_upload
     elif [[ -e $SRC ]]; then
         db_upload_file "$SRC" "$DST"
 
+    #Delete after upload
+    if [ -e "$SRC" -o -d "$SRC" ]; then
+      rm -rf $SRC
+    fi
+
     #Unsupported object...
     else
         print " > Skipping not regular file \"$SRC\"\n"
